@@ -1,30 +1,86 @@
 class ApplicationController < Sinatra::Base
   set :default_content_type, 'application/json'
-  # Get all projects
+  # Add routes
+  get '/users' do
+    users = User.all.order(created_at: :asc)
+    users.to_json
+  end
+  post '/users' do
+    user = User.create(
+      username: params[:username],
+      email: params[:email],
+      password: params[:password]
+    )
+    user.to_json
+  end
+  patch '/users/:id' do
+    user = User.find(params[:id])
+    user.update(
+      username: params[:username],
+      email: params[:email],
+      password: params[:password]
+    )
+    user.to_json
+  end
+  delete '/users/:id' do
+    user = User.find(params[:id])
+    user.destroy
+    user.to_json
+  end
+  # Members
+  get '/members' do
+    members = Member.all.order(created_at: :asc)
+    members.to_json
+  end
+  post '/members' do
+    member = Member.create(
+      name: params[:name],
+      email: params[:email],
+      user_id: params[:user.id],
+      project_id: params[:project.id]
+    )
+    member.to_json
+  end
+  patch '/members/:id' do
+    member = Member.find(params[:id])
+    member.update(
+      name: params[:name],
+      email: params[:email],
+      user_id: params[:user.id],
+      project_id: params[:project.id]
+    )
+    member.to_json
+  end
+  delete '/members/:id' do
+    member = Member.find(params[:id])
+    member.destroy
+    member.to_json
+  end
+  # Projects
   get '/projects' do
-    projects = Projects.all
+    projects = Project.all.order(created_at: :asc)
     projects.to_json
   end
-  # Get a specific project by id
-  get '/projects/:id' do
-    project = Project.find(params[:id])
-    project.to_json
-  end
-  # Create a new project
   post '/projects' do
-    project = Project.create(params)
+    project = Project.create(
+      name: params[:name],
+      title: params[:title],
+      description: params[:description]
+    )
     project.to_json
   end
-  # Update a project by id
   patch '/projects/:id' do
     project = Project.find(params[:id])
-    project.update(params)
+    project.update(
+      name: params[:name],
+      title: params[:title],
+      description: params[:description]
+    )
     project.to_json
   end
-  # Delete a project by id
   delete '/projects/:id' do
     project = Project.find(params[:id])
     project.destroy
-    { message: "project with id #{params[:id]} deleted" }.to_json
+    project.to_json
   end
 end
