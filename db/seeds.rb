@@ -1,22 +1,25 @@
 puts ":seedling: Seeding spices..."
 Project.destroy_all
-Member.destroy_all
+ProjectMember.destroy_all
 # Seed your database here
-puts "Creating members"
-member1 = Member.create(name: 'Tony stark', email: 'tony.stark@gmail.com')
-member2 = Member.create(name: 'Dave santan', email: 'dave.santan@gmail.com')
-member3 = Member.create(name: 'Davis mclean', email: 'davis.mclean@gmail.com')
-member4 = Member.create(name: 'Dushane hill', email: 'dushane.hill@gmail.com')
-member5 = Member.create(name: 'Mad munga', email: 'mad.munga@gmail.com')
-#project.create(name: 'AMP' title: 'Azure management project', description: 'Azure plan for the year')
 puts "Creating projects"
-project1 = Project.create(name: 'UFC', title: 'ultimate fighting championship', description: 'fighting club')
-project2 = Project.create(name: 'MD', title: 'mcdonalds', description: 'fast food restaurant')
-project3 = Project.create(name: 'D98', title: 'dance 98', description: 'dancing competition')
-project4 = Project.create(name: 'F1', title: 'formula 1', description: 'racing club')
-project5 = Project.create(name: 'PFA', title: 'pet finder app', description: 'pet finding project')
-#create some projects
-# project1 = Project.create(name: 'Project A')
-# project2 = Project.create(name: 'Project B')
-# project3 = Project.create(name: 'Project C')
-puts " Done seeding!"
+project1 = Project.create(name: 'UFC', title: 'Ultimate Fighting Championship', description: 'seedling generation project', user_id: 10)
+project2 = Project.create(name: 'NBA', title: 'National Basketball Assoiation', description: 'fast food restaurant', user_id: 20)
+project3 = Project.create(name: 'APC', title: 'Avocado plants cooporation', description: 'avocado management project', user_id: 30)
+project4 = Project.create(name: 'MD', title: 'mark miller cooporation', description: 'charity organization',user_id: 40)
+project5 = Project.create(name: '', title: 'climate change inititiative', description: 'climate change an tracking',user_id: 50)
+10.times do
+  user = User.create(
+    username: Faker::Internet.username,
+    password: Faker::Internet.password,
+    email: Faker::Internet.email
+  )
+end
+puts "Creating members"
+member1 = ProjectMember.create(name: 'Faith kilel', email: 'faith.kilel@gmail.com', user_id: 1, project_id: 1)
+member2 = ProjectMember.create(name: 'Jane akello', email: 'jane.akello@gmail.com', user_id: 2, project_id: 2)
+member3 = ProjectMember.create(name: 'Davis olunga', email: 'davis.olunga@gmail.com', user_id:3, project_id: 3)
+member4 = ProjectMember.create(name: 'Brian mutai', email: 'brian.mutai@gmail.com', user_id:4, project_id: 4)
+member5 = ProjectMember.create(name: 'Mark obiero', email: 'mark obiero@gmail.com', user_id:5, project_id: 5)
+#project.create(name: 'AMP' title: 'Azure management project', description: 'Azure plan for the year')
+puts "done seeding"

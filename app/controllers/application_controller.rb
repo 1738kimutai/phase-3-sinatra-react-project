@@ -1,9 +1,16 @@
 class ApplicationController < Sinatra::Base
   set :default_content_type, 'application/json'
+
+  before do
+    response.headers["Access-Control-Allow-Origin"]="*"
+  end
+  get '/project' do
+end
+  
   # Add routes
-  get '/users' do
-    users = User.all.order(created_at: :asc)
-    users.to_json
+  get '/users' do 
+    users = User.all
+        users.to_json
   end
   post '/users' do
     user = User.create(
@@ -22,18 +29,19 @@ class ApplicationController < Sinatra::Base
     )
     user.to_json
   end
+
   delete '/users/:id' do
     user = User.find(params[:id])
     user.destroy
     user.to_json
   end
   # Members
-  get '/members' do
-    members = Member.all.order(created_at: :asc)
+  get '/project-members' do 
+    members = ProjectMember.all
     members.to_json
   end
-  post '/members' do
-    member = Member.create(
+  post '/project-members' do
+    member = Project-Member.create(
       name: params[:name],
       email: params[:email],
       user_id: params[:user.id],
@@ -41,24 +49,26 @@ class ApplicationController < Sinatra::Base
     )
     member.to_json
   end
-  patch '/members/:id' do
-    member = Member.find(params[:id])
+  patch '/project-members/:id' do
+    member = ProjectMember.find(params[:id])
     member.update(
       name: params[:name],
       email: params[:email],
       user_id: params[:user.id],
       project_id: params[:project.id]
     )
-    member.to_json
+      member.to_json
+    
   end
-  delete '/members/:id' do
-    member = Member.find(params[:id])
+
+  delete '/project-members/:id' do
+    member = ProjectMember.find(params[:id])
     member.destroy
     member.to_json
   end
   # Projects
-  get '/projects' do
-    projects = Project.all.order(created_at: :asc)
+  get '/projects' do 
+    projects = Project.all
     projects.to_json
   end
   post '/projects' do
@@ -78,6 +88,7 @@ class ApplicationController < Sinatra::Base
     )
     project.to_json
   end
+
   delete '/projects/:id' do
     project = Project.find(params[:id])
     project.destroy

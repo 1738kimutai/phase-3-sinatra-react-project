@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_04_115309) do
+ActiveRecord::Schema.define(version: 2023_03_06_064243) do
 
-  create_table "members", force: :cascade do |t|
+  create_table "project_members", force: :cascade do |t|
     t.string "name"
     t.text "email"
     t.integer "user_id"
@@ -23,8 +23,9 @@ ActiveRecord::Schema.define(version: 2023_03_04_115309) do
 
   create_table "projects", force: :cascade do |t|
     t.string "name"
-    t.string "title"
     t.string "description"
+    t.string "title"
+    t.integer "user_id"
   end
 
   create_table "users", force: :cascade do |t|

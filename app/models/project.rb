@@ -1,4 +1,4 @@
 class Project < ActiveRecord::Base
-    has_many :members
-    has_many :users, through: :members
+    has_many :project_members
+    has_many :users, through: :project_members
 end
