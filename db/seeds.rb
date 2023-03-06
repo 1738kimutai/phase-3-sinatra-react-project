@@ -3,11 +3,11 @@ Project.destroy_all
 ProjectMember.destroy_all
 # Seed your database here
 puts "Creating projects"
-project1 = Project.create(name: 'UFC', title: 'Ultimate Fighting Championship', description: 'seedling generation project', user_id: 10)
-project2 = Project.create(name: 'NBA', title: 'National Basketball Assoiation', description: 'fast food restaurant', user_id: 20)
+project1 = Project.create(name: 'UFC', title: 'Ultimate Fighting Championship', description: 'fihting club', user_id: 10)
+project2 = Project.create(name: 'NBA', title: 'National Basketball Assoiation', description: ' gamers', user_id: 20)
 project3 = Project.create(name: 'APC', title: 'Avocado plants cooporation', description: 'avocado management project', user_id: 30)
-project4 = Project.create(name: 'MD', title: 'mark miller cooporation', description: 'charity organization',user_id: 40)
-project5 = Project.create(name: '', title: 'climate change inititiative', description: 'climate change an tracking',user_id: 50)
+project4 = Project.create(name: 'MD', title: 'Mcdonalds', description: 'charity organization',user_id: 40)
+project5 = Project.create(name: 'UFC', title: 'Ultimate Fighting Club', description: 'climate change an tracking',user_id: 50)
 10.times do
   user = User.create(
     username: Faker::Internet.username,
